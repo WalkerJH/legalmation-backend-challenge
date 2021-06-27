@@ -1,13 +1,13 @@
 import xml.etree.ElementTree as ET
 
-def getDefendantsFromXml(fileName):
+def get_defendants_from_xml(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
 
     return ['NOT IMPLEMENTED']
 
 
-def getPlaintiffsFromXml(fileName):
+def get_plaintiffs_from_xml(fileName):
     tree = ET.parse(fileName)
     root = tree.getroot()
 
