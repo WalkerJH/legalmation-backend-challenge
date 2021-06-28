@@ -5,8 +5,24 @@
         <h1>Extract plaintiffs and defendants from a legal complaint</h1>
     </head>
 
-    <button type="button">UPLOAD COMPLAINT XML</button>
+    <button type="button">upload complaint xml</button>
 
+    <div>
+        <h2>Web Interface Usage</h2>
+        <p>Click the button to upload an xml file generated from a legal complaint by FineReader.</p>
+        <p>You will be redirected to json containing your plaintiffs and defendants.</p>
+        <h2>API Usage</h2>
+        <p>
+            As this is not hosted anywhere, run it locally. Make sure you have Python 3 and Flask.<br>
+            From your terminal, navigate to the folder with flask_app.py and do
+            <pre><code>$ python3 flask_app.py </code></pre>
+        </p>
+        <p>
+            To upload your file, do 
+            <pre><code>$ curl -F ‘my_folder/my_complaint.xml’ http://127.0.0.1:5000/ </code></pre>
+            The api will respond with json containing your plaintiffs and defendants.
+        </p>
+    </div>
     <footer>
         <p>By Walker Herring</p>
     </footer>
