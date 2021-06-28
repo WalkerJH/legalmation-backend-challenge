@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 from werkzeug.utils import secure_filename
 import os
 import complaint_parser
@@ -7,17 +7,29 @@ import sqlite3
 TEMPLATE_DIR = os.path.abspath('templates')
 STATIC_DIR = os.path.abspath('static')
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder=STATIC_DIR)
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 4
+app.config['UPLOAD_EXTENSIONS'] = ['.xml']
 
 @app.route('/', methods = ['GET', 'POST'])
 def mainpage():
-    return render_template('mainpage.html')
+    r = render_template('mainpage.html')
+    if request.method == 'POST':
+        f = request.files['file']
+        if (validate_file(f)):
+            r = process_xml(f.read())
+    return r
 
-@app.route('/uploader', methods = ['GET', 'POST'])
-def upload_file():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(secure_filename(f.filename))
-      return process_xml(f.read())
+@app.errorhandler(400)
+def error(message):
+    return render_template('error.html', text=message)
+
+def validate_file(f):
+    filename = f.filename
+    if filename != '':
+        file_ext = os.path.splitext(filename)[1]
+        if file_ext not in app.config['UPLOAD_EXTENSIONS']:
+            abort(400, "File is not xml")
+    return True
 
 def process_xml(xml_text):
     return xml_text

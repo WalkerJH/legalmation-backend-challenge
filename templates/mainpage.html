@@ -5,15 +5,14 @@
         <h1>Extract plaintiffs and defendants from a legal complaint</h1>
     </head>
 
-    <form action = "http://localhost:5000/uploader" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file"/>
-         <input type = "submit"/>
+    <form action = "" method = "POST" enctype = "multipart/form-data">
+         <input type="file" name = "file" value = "Choose XML File">
+         <input type = "submit" value = "Upload & Process">
       </form>
 
     <div>
         <h2>Web Interface Usage</h2>
-        <p>Click the button to upload your xml file generated from a legal complaint by FineReader.</p>
+        <p>Click the "browse" button to to upload an xml file you have generated from a legal complaint.</p>
         <p>You will be redirected to json containing your plaintiffs and defendants.</p>
         <h2>API Usage</h2>
         <p>

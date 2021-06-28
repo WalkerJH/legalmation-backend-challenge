@@ -11,4 +11,4 @@ def test_file_upload():
 def test_api_response():
     files = {'file': open(input_folder + 'A.xml', 'rb')}
     r = requests.post(local_host_url, files = files)
-    assert(r.json) != None
+    assert(r.content) != None
