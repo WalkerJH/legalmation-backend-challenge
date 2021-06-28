@@ -15,7 +15,7 @@ h1 {
 h2 {
     font-family: "Montserrat", Sans-serif;
 }
-.orange-button {
+button {
     display: inline-block;
     background-color: var(--color-orange);
     border-style: solid;
