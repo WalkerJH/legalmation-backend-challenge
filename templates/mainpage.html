@@ -12,7 +12,7 @@
 
     <div>
         <h2>Web Interface Usage</h2>
-        <p>Click the "browse" button to to upload an xml file you have generated from a legal complaint.</p>
+        <p>Click "browse" to select an xml file you have generated from a legal complaint. <br> Then, click the "Upload & Process" button.</p>
         <p>You will be redirected to json containing your plaintiffs and defendants.</p>
         <h2>API Usage</h2>
         <p>
@@ -22,7 +22,7 @@
         </p>
         <p>
             To upload your file, do 
-            <pre><code>$ curl -F ‘my_folder/my_complaint.xml’ http://127.0.0.1:5000/ </code></pre>
+            <pre><code>$ curl -F 'file=@&lt;my_file_path&gt;' http://127.0.0.1:5000/ </code></pre>
             The api will respond with json containing your plaintiffs and defendants.
         </p>
     </div>
