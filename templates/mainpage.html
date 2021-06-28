@@ -6,7 +6,7 @@
     </head>
 
     <form action = "" method = "POST" enctype = "multipart/form-data">
-         <input type="file" name = "file" value = "Choose XML File">
+         <input type="file" name = "file">
          <input type = "submit" value = "Upload & Process">
       </form>
 
@@ -15,11 +15,6 @@
         <p>Click "browse" to select an xml file you have generated from a legal complaint. <br> Then, click the "Upload & Process" button.</p>
         <p>You will be redirected to json containing your plaintiffs and defendants.</p>
         <h2>API Usage</h2>
-        <p>
-            As this is not hosted anywhere, run it locally. <br>Make sure you have Python 3 and Flask.<br>
-            From your terminal, navigate to the folder with flask_app.py and do
-            <pre><code>$ python3 flask_app.py </code></pre>
-        </p>
         <h3>curl</h3>
         <p>
             To upload your file, do 
