@@ -16,14 +16,26 @@
         <p>You will be redirected to json containing your plaintiffs and defendants.</p>
         <h2>API Usage</h2>
         <p>
-            As this is not hosted anywhere, run it locally. Make sure you have Python 3 and Flask.<br>
+            As this is not hosted anywhere, run it locally. <br>Make sure you have Python 3 and Flask.<br>
             From your terminal, navigate to the folder with flask_app.py and do
             <pre><code>$ python3 flask_app.py </code></pre>
         </p>
+        <h3>curl</h3>
         <p>
             To upload your file, do 
             <pre><code>$ curl -F 'file=@&lt;my_file_path&gt;' http://127.0.0.1:5000/ </code></pre>
             The api will respond with json containing your plaintiffs and defendants.
+        </p>
+        <h3>Python</h3>
+        <p>
+            <code>
+                files = {'file': open('&lt;my_file_path&gt;', 'rb')}<br>
+                r = requests.post(local_host_url, files = files)<br>
+                complaint_info = r.json<br>
+            </code>
+        </p>
+        <p>
+            This code uploads the file at <em>my_file_path</em> and stores the json received from the API in the variable complaint_info.
         </p>
     </div>
     <footer>

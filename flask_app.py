@@ -3,6 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 import complaint_parser
 import sqlite3
+import json
 
 TEMPLATE_DIR = os.path.abspath('templates')
 STATIC_DIR = os.path.abspath('static')
@@ -15,12 +16,9 @@ app.config['UPLOAD_EXTENSIONS'] = ['.xml']
 def mainpage():
     r = render_template('mainpage.html')
     if request.method == 'POST':
-        print("processing file!")
         file = request.files['file']
-        print(file.filename)
         if (validate_file(file)):
-            print("file validated!")
-            r = process_xml(file.read())
+            r = process_xml(file)
     return r
 
 @app.errorhandler(400)
@@ -35,8 +33,14 @@ def validate_file(file):
             abort(400, "File is not xml")
     return True
 
-def process_xml(xml_text):
-    return xml_text
+def process_xml(file):
+    complaint_dict = {}
+    complaint_dict['filename'] = file.filename
+    filetext = file.read().decode('utf-8')
+    complaint_dict['defendants'] = complaint_parser.get_defendants_from_xml(filetext)
+    complaint_dict['plaintiffs'] = complaint_parser.get_plaintiffs_from_xml(filetext)
+    complaint_json = json.dumps(complaint_dict)
+    return complaint_json
 
 if __name__ == '__main__':
     app.run()
