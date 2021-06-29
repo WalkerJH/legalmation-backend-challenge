@@ -17,14 +17,18 @@ You will be redirected to JSON containing your plaintiffs and defendants. From t
 
 ## API Documentation
 The API follows the [JSON:API Specification](https://jsonapi.org/format/). \
-After an xml document is processed, the API responds with JSON in this form:
+After an xml document is processed, the API responds with JSON containing:
+-**filename:** String. Name of the file you uploaded.
+-**defendants:** String. Defendant or defendants parsed from the xml complaint.
+-**plaintiffs:** String. Plaintiff or plaintiffs parsed from the xml complaint.
+For example:
 ```
 {
   "data": {
     "attributes": {
-      "defendants": "HILL-ROM COMPANY, INC., an Indiana corporation; and DOES 1 through 100, inclusive, 1. 2",
-      "filename": "A.xml",
-      "plaintiffs": "ANGELO ANGELES, an individual,"
+      "defendants": "Business Inc",
+      "filename": "my_complaint.xml",
+      "plaintiffs": "Jane Doe"
     },
     "id": "1",
     "type": "complaint"
