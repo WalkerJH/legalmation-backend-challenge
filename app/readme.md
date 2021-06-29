@@ -10,6 +10,8 @@ To run the app, first clone the repository. Then, using your terminal, navigate 
 $ python3 flask_app.py
 ```
 
+
+
 ## Web App
 
 After running the app locally, open it by navigating to http://127.0.0.1:5000/ in your web browser. \
