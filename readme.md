@@ -20,7 +20,7 @@ You will be redirected to JSON containing your plaintiffs and defendants. From t
 ## API Documentation
 
 The API follows the [JSON:API Specification](https://jsonapi.org/format/). \
-After an xml document is processed, the API responds with JSON containing:
+After an xml document is processed, the API responds with JSON containing the following attributes:
 - **filename:** String. Name of the file you uploaded.
 - **defendants:** String. Defendant or defendants parsed from the xml complaint.
 - **plaintiffs:** String. Plaintiff or plaintiffs parsed from the xml complaint.
