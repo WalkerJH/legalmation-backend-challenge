@@ -1,5 +1,6 @@
 # LegalMation Backend Coding Challenge: Complaint API
-By Walker Herring
+
+*By Walker Herring*
 
 Requirements to run the app: Python3, Flask 2.0.1, requests, sqlite3, xml.ElementTree \
 Required to run included tests: pytest \
@@ -9,6 +10,7 @@ $ python3 flask_app.py
 ```
 
 ## Web App
+
 After running the app locally, open it by navigating to http://127.0.0.1:5000/. \
 Click **browse** to select an xml file you have generated from a legal complaint. Only xml files generated with ABBYY FineReader will be accepted.
 Then, click **Upload & Process**.
@@ -16,11 +18,12 @@ Then, click **Upload & Process**.
 You will be redirected to JSON containing your plaintiffs and defendants. From there, you can save the page to your machine.
 
 ## API Documentation
+
 The API follows the [JSON:API Specification](https://jsonapi.org/format/). \
 After an xml document is processed, the API responds with JSON containing:
--**filename:** String. Name of the file you uploaded.
--**defendants:** String. Defendant or defendants parsed from the xml complaint.
--**plaintiffs:** String. Plaintiff or plaintiffs parsed from the xml complaint.
+- **filename:** String. Name of the file you uploaded.
+- **defendants:** String. Defendant or defendants parsed from the xml complaint.
+- **plaintiffs:** String. Plaintiff or plaintiffs parsed from the xml complaint.
 For example:
 ```
 {
@@ -45,6 +48,7 @@ $ curl -F 'file=@<my_file_path>' http://127.0.0.1:5000/
 The api will respond with JSON containing your plaintiffs and defendants.
 
 ### Python Usage
+
 ```
 files = {'file': open('<my_file_path>', 'rb')}
 r = requests.post(local_host_url, files = files)
