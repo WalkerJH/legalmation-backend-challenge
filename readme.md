@@ -2,6 +2,7 @@
 
 **By Walker Herring**
 
+## Running the App Locally
 Requirements to run the app: Python3, Flask 2.0.1, requests, sqlite3, xml.ElementTree \
 Required to run included tests: pytest \
 To run the app, first clone the repository. Then, using your terminal, navigate to the project directory and run the following command:
