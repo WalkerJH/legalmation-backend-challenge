@@ -10,7 +10,7 @@ $ python3 flask_app.py
 
 ## Web App
 After running the app locally, open it by navigating to http://127.0.0.1:5000/. \
-Click **browse** to select an xml file you have generated from a legal complaint.
+Click **browse** to select an xml file you have generated from a legal complaint. Only xml files generated with ABBYY FineReader will be accepted.
 Then, click **Upload & Process**.
 
 You will be redirected to JSON containing your plaintiffs and defendants. From there, you can save the page to your machine.
