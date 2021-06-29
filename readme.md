@@ -1,4 +1,4 @@
-# LegalMation Backend Coding Challenge
+# LegalMation Backend Coding Challenge: Complaint API
 By Walker Herring
 
 Requirements to run the app: Python3, Flask 2.0.1, requests, sqlite3, xml.ElementTree \
@@ -46,4 +46,5 @@ files = {'file': open('<my_file_path>', 'rb')}
 r = requests.post(local_host_url, files = files)
 complaint_info = r.json
 ```
+
 This code uploads the file at my_file_path and stores the JSON received from the API in the variable complaint_info. 
