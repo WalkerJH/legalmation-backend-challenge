@@ -16,14 +16,14 @@ def test_api_response():
     files = {'file': f}
     r = requests.post(local_host_url, files = files)
     f.close()
-    assert(r.content is not None)
+    assert(r.text is not None)
     
 def test_api_response_json():
     f = open(input_folder + 'A.xml', 'rb')
     files = {'file': f}
     r = requests.post(local_host_url, files = files)
     f.close()
-    assert(r.json is not None)
+    assert('ANGELO ANGELES' in str(r.text) and 'HILL-ROM COMPANY, INC.' in str(r.text))
 
 def test_db_connect():
     conn = sqlite3.connect('complaints.db')

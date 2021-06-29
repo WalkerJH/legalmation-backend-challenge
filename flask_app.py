@@ -1,4 +1,4 @@
-"""Flask app to parse plaintiffs and defendants from legal complaint"""
+"""REST API with Flask to parse plaintiffs and defendants from legal complaint"""
 __author__      = "Walker Herring"
 
 from flask import Flask, render_template, request, abort, jsonify
@@ -50,10 +50,11 @@ def process_xml(file):
     filetext = file.read().decode('utf-8')
     complaint_dict['defendants'] = complaint_parser.get_defendants_from_xml(filetext)
     complaint_dict['plaintiffs'] = complaint_parser.get_plaintiffs_from_xml(filetext)
-    complaint_json = jsonify(complaint_dict)
-    
+
     add_db_entry(complaint_dict)
 
+    json_dict = {'data': {'type': 'complaint', 'id': '1', 'attributes': complaint_dict}}
+    complaint_json = jsonify(json_dict)
     return complaint_json
 
 def add_db_entry(complaint_dict):
