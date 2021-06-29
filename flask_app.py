@@ -40,7 +40,7 @@ def validate_file(file):
     contents = str(file.read())
     file.seek(0, 0)
     if ABBYY_NS_STR not in contents:
-        abort(400, "File not created with FineReader")
+        abort(400, "Not a file not created with FineReader")
 
     return True
 
