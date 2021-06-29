@@ -9,7 +9,7 @@ To run the app, first clone the repository. Then, using your terminal, navigate 
 ```
 $ python3 main.py
 ```
-
+ 
 ## Web App
 
 After running the app locally, open it by navigating to http://127.0.0.1:5000/ in your web browser. \
@@ -59,3 +59,22 @@ complaint_info = r.json
 ```
 
 This code uploads the file at my_file_path and stores the JSON received from the API in the variable complaint_info. 
+
+## Production Deployment
+This app could be deployed using Heroku with the following modifications.
+- Refactor database from sqlite to mysql
+- Install gunicorn and add it to requirements.txt
+- Create wsgi.py with the following contents:
+```
+from app.main import app
+if __name__ == “__main__”:
+  app.run()
+```
+- Create runtime.txt with the following contents:
+```
+python-3.8.5
+```
+- Create Procfile with the following contents:
+```
+web: gunicorn wsgi:app
+```
