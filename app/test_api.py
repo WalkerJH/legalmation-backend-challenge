@@ -1,4 +1,4 @@
-import flask_app
+import main
 import requests
 import sqlite3
 
@@ -32,5 +32,5 @@ def test_db_connect():
 
 def test_db_add_and_retrieve():
     complaint_dict = {'filename': 'testfile', 'plaintiffs': 'Kim Plaintiff', 'defendants': 'Greed Inc'}
-    flask_app.add_db_entry(complaint_dict)
-    assert(flask_app.retrieve_db_entry('testfile') == complaint_dict)
+    main.add_db_entry(complaint_dict)
+    assert(main.retrieve_db_entry('testfile') == complaint_dict)
