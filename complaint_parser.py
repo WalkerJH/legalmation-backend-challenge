@@ -2,8 +2,11 @@
 __author__      = "Walker Herring"
 
 import xml.etree.ElementTree as ET
+import re
 
 ABBYY_NS = '{http://www.abbyy.com/FineReader_xml/FineReader10-schema-v1.xml}'
+
+COMPLAINT_HEADER_KEYWORDS = ['COUNTY OF', 'COURT', 'STATE OF', 'DISTRICT', 'DIVISION', 'JURISDICTION']
 
 def get_defendants_from_xml(xml_text):
     root = ET.fromstring(xml_text)
@@ -22,13 +25,47 @@ def get_defendants_from_xml(xml_text):
                 else:
                     defendants_str += ' ' + text
 
-            elif 'vs.' in text or 'v.' in text:
-                defendants_found = True
-
-def str_cleanup(string):
-    return string.strip()
+            if 'vs.' in text or 'v.' in text:
+                if (defendants_found):
+                    defendants_str = ''
+                    defendants_found = False
+                else:
+                    defendants_found = True
 
 def get_plaintiffs_from_xml(xml_text):
     root = ET.fromstring(xml_text)
 
-    return 'NOT IMPLEMENTED'
+    plaintiffs_found = False
+    plaintiffs_str = ''
+    for line in root.iter(ABBYY_NS + 'line'):
+
+        formatting = line.find(ABBYY_NS + 'formatting')
+        text = formatting.text
+
+        if text is not None:
+            if plaintiffs_found:
+                if 'Plaintiffs,' in text or 'Plaintiff,' in text or 'Plaintiff(s),' in text:
+                    return str_cleanup(plaintiffs_str)
+                else:
+                    plaintiffs_str += ' ' + text
+
+            if is_header_line(text):
+                if (plaintiffs_found):
+                    plaintiffs_str = ''
+                else:
+                    plaintiffs_found = True
+
+def is_header_line(text):
+    for keyword in COMPLAINT_HEADER_KEYWORDS:
+        if (keyword.lower() in text.lower()):
+            return True
+    return False
+
+def str_cleanup(string):
+    cleaned_str = string
+
+    cleaned_str = cleaned_str.replace(')', '')
+    cleaned_str = re.sub('\\s+', ' ', cleaned_str)
+    cleaned_str = cleaned_str.strip()
+    
+    return cleaned_str
